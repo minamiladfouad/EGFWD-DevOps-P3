@@ -32,6 +32,6 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
-      - welcome-mina
+      - welcome-mina:
         requires:
           - say-hello
