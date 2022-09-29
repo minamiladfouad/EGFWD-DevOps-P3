@@ -16,7 +16,15 @@ jobs:
       - checkout
       - run:
           name: "Say hello"
-          command: "echo Welcome Mina, to CI/CD world!"
+          command: "echo Hello,"
+  welcome-mina:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: "Welcome Mina"
+          command: "echo Welcome Mina to CI/CD world!"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -24,3 +32,6 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
+      - welcome-mina
+        requires:
+          say-hello
