@@ -24,7 +24,7 @@ jobs:
       - checkout
       - run:
           name: "Welcome Mina"
-          command: "echo Welcome Mina to CI/CD world!"
+          command: echo "Welcome "$my_name_env" to CI/CD world!"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
