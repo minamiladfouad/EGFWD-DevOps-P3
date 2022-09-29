@@ -34,4 +34,4 @@ workflows:
       - say-hello
       - welcome-mina
         requires:
-          say-hello
+          - say-hello
