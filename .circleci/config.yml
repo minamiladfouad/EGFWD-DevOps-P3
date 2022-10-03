@@ -2,7 +2,7 @@
 version: 2.1
 
 commands:
-  print_pipeline_id:
+  print_pipeline_id_cmd:
     description: "A very simple command for demonstration purposes"
     parameters:
       var:
@@ -19,8 +19,18 @@ jobs:
       - image: cimg/base:stable
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
-      - print_pipeline_id:
+      - print_pipeline_id_cmd:
           var: $CIRCLE_WORKFLOW_ID
+  fail_job:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - run: return 1
+      - run:
+          command:
+            print_pipeline_id_cmd:
+              var: "Hello Error!"
+          when: on_fail
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -28,3 +38,4 @@ workflows:
   say-hello-workflow:
     jobs:
       - print_pipeline_id
+      - fail_job
