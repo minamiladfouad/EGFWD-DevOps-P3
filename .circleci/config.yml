@@ -35,6 +35,7 @@ jobs:
               echo "Great .. It worked ^_^";
             else
               echo "Nope! =("; exit 1
+            fi
 
 
 # Invoke jobs via workflows
