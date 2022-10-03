@@ -28,8 +28,9 @@ jobs:
       - run: return 1
       - run:
           command:
-            print_pipeline_id_cmd:
-              var: "Hello Error!"
+            steps:
+              - print_pipeline_id_cmd:
+                  var: "Hello Error!"
           when: on_fail
 
 # Invoke jobs via workflows
