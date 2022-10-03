@@ -12,9 +12,9 @@ jobs:
       - checkout
       - run:
           name: "Say hello"
-          command: "echo 'Hello, to Output text!' > output.txt" 
+          command: echo 'Hello, to Output text!' > output.txt
       - persist_to_workspace:
-            root: ~/tmp/workspace
+            root: tmp/workspace
             paths:
               - target/application.jar
               - build/*
@@ -26,11 +26,11 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
+      - attach_workspace:
+          at: tmp/workspace
       - run:
           name: "Print hello"
-          command: "cat output.txt" 
-      - attach_workspace:
-          at: ~/tmp/workspace
+          command: cat output.txt
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
