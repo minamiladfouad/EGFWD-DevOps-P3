@@ -26,8 +26,9 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - run: return 1
-      - print_pipeline_id_cmd:
-          var: "Hello Error!"
+      - run:
+          print_pipeline_id_cmd:
+            var: "Hello Error!"
           when: on_fail
 
 # Invoke jobs via workflows
