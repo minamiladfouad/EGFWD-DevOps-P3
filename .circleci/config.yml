@@ -10,11 +10,12 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
+      - run: mkdir -p tmp-workspace
       - run:
           name: "Say hello"
-          command: echo "Hello, world!" > /tmp/workspace/echo-output
+          command: echo "Hello, world!" > tmp-workspace/echo-output
       - persist_to_workspace:
-            root: /tmp/workspace
+            root: tmp-workspace
             paths:
               - echo-output
   
@@ -26,7 +27,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: /tmp/workspace
+          at: /tmp/tmp-workspace
       - run:
           name: "Print hello"
           command: |
